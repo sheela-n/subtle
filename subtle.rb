@@ -38,11 +38,11 @@ set :resize, false
 set :strut, [ 0, 0, 0, 0 ]
 
 # Font string either take from e.g. xfontsel or use xft
-set :font, "-*-*-medium-*-*-*-20-*-*-*-*-*-*-*"
+set :font, "-*-*-medium-*-*-*-18-*-*-*-*-*-*-*"
 #set :font, "xft:sans-8"
 
 # Space around windows
-set :gap, 2
+set :gap, 3
 
 # Panel size padding (left, right, top, bottom)
 set :padding, [ 0, 0, 0, 0 ]
@@ -102,14 +102,16 @@ set :outline, 4 #changed here 0 to 4
 #
 
 screen 1 do
-  top    [ :views, :center,  :title, :center, :spacer, :keychain, :spacer, :tray, :sublets ]
-  #bottom [ :views, :title, :spacer ]
+  top    [:views, :spacer, :keychain, :spacer, :tray, :sublets ]
+  #top    [ :views, :title, :spacer, :keychain, :spacer, :tray, :sublets ]
+  bottom [ :title, :spacer, :clock ]
+# bottom [ :views, :title, :spacer ]
 end
 
 # Example for a second screen:
 screen 2 do
   #top    [ :views, :title, :spacer ]
-  bottom [:views ]
+  #bottom [:title ]
 end
 
 #
@@ -130,41 +132,41 @@ end
 #
 # http://subforge.org/projects/subtle/wiki/Themes 
 # Colors of focus window title
-color :title_fg,        "#ff99ff"
-color :title_bg,        "#505050"
-color :title_border,    "#505050"
+color :title_fg,        "#808080"
+color :title_bg,        "#000000"
+color :title_border,    "#000000"
 
 # Colors of the active views
-color :focus_fg,        "#ff99cc"
-color :focus_bg,        "#505050"
-color :focus_border,    "#505050"
+color :focus_fg,        "#e0e0e0"
+color :focus_bg,        "#000000"
+color :focus_border,    "#000000"
 
 # Colors of urgent window titles and views
 color :urgent_fg,       "#ff00ff"
-color :urgent_bg,       "#202020"
+color :urgent_bg,       "#000000"
 color :urgent_border,   "#ff00cc"
 
 # Colors of occupied views (views with clients)
-color :occupied_fg,     "#ffcccc"
-color :occupied_bg,     "#505050"
-color :occupied_border, "#505050"
+color :occupied_fg,     "#ffffff"
+color :occupied_bg,     "#000000"
+color :occupied_border, "#000000"
 
 # Color of view buttons
 color :views_fg,        "#757575"
-color :views_bg,        "#505050"
-color :views_border,    "#505050"
+color :views_bg,        "#000000"
+color :views_border,    "#000000"
 
 # Colors of sublets
-color :sublets_fg,      "#757575"
-color :sublets_bg,      "#505050"
-color :sublets_border,  "#505050"
+color :sublets_fg,      "#a0a0a0"
+color :sublets_bg,      "#000000"
+color :sublets_border,  "#000000"
 
 # Border colors of active/inactive windows
 color :client_active,   "#ff00cc"
 color :client_inactive, "#202020"
 
 # Background colors of panel
-color :panel,           "#505050"
+color :panel,           "#000000"
 
 # Background color of root background
 color :background,      "#3d3d3d"
@@ -696,21 +698,23 @@ end
 
 view "work" do
   match "terms|default|tmux"
-  icon  Subtlext::Icon.new("/home/sheela/xbm8x8/rwd.xbm")
+  icon  Subtlext::Icon.new("/home/sheela/.config/subtle/icons/tile.xbm")
   icon_only true
 end
 
 view "web" do
   match "chromium-browser|browser"
- icon Subtlext::Icon.new("/home/sheela/xbm8x8/ac.xbm")
+ icon Subtlext::Icon.new("/home/sheela/.config/subtle/icons/fs_01.xbm")
  icon_only true
+ dynamic true
 end
 
 
 view "others" do
   match "libreoffice"
-  icon Subtlext::Icon.new("/home/sheela/xbm8x8/cat.xbm")
+  icon Subtlext::Icon.new("/home/sheela/.config/subtle/icons/binder.xbm")
   icon_only true
+  dynamic true
 end
 
 #view "dev" do
@@ -720,7 +724,7 @@ end
 view "test" do
   match "libreoffice"
   dynamic true
-  icon Subtlext::Icon.new("/home/sheela/xbm8x8/note.xbm")
+  icon Subtlext::Icon.new("/home/sheela/.config/subtle/icons/note.xbm")
   icon_only true
 end
 
@@ -758,12 +762,12 @@ end
 #
 # === Example
 #
- sublet :clock do
-    interval      10
-    foreground    "#ffccff"
-    background    "#000000"
-    format_string "%m/%d/%y %H:%M:%S"
- end
+ #sublet :clock do
+ #   interval      10
+ #   foreground    "#ffccff"
+ #   background    "#000000"
+ #   format_string "%m/%d/%y %H:%M:%S"
+ #end
 
 #
 #  === Link
@@ -819,3 +823,8 @@ end
 
 # vim:ts=2:bs=2:sw=2:et:fdm=marker
 #
+style :views do
+   background "#000000"
+   foreground "#f6f6f6"
+end
+
