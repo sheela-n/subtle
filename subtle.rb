@@ -56,6 +56,24 @@ set :outline, 4 #changed here 0 to 4
 # Set the WM_NAME of subtle (Java quirk)
 # set :wmname, "LG3D"
 
+#Add launcher
+begin
+  require "#{ENV["HOME"]}/.config/subtle/subtle-contrib-f42631455151/ruby/launcher.rb"
+  Subtle::Contrib::Launcher.fonts = [
+              "xft:DejaVu Sans Mono:pixelsize=80:antialias=true",
+               "xft:DejaVu Sans Mono:pixelsize=12:antialias=true"
+               ]
+
+  Subtle::Contrib::Launcher.paths = [ "/usr/bin/", "~/bin"]
+  rescue LoadError => error
+    puts error
+end
+
+grab "C-x" do
+  Subtle::Contrib::Launcher.run
+end
+
+
 #
 # == Screen
 #
