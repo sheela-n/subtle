@@ -120,10 +120,9 @@ end
 #
 
 screen 1 do
-  top    [:views, :spacer, :keychain, :spacer, :tray, :sublets ]
+  top    [:rssfeeds, :spacer, :keychain, :spacer, :tray, :wifi, :separator, :clock, :battery]
   #top    [ :views, :title, :spacer, :keychain, :spacer, :tray, :sublets ]
-  bottom [ :title, :spacer, :clock ]
-# bottom [ :views, :title, :spacer ]
+  #bottom [ :views, :title, :spacer ]
 end
 
 # Example for a second screen:
@@ -449,9 +448,6 @@ grab "S-F3" do
   puts Subtlext::VERSION
 end
 
-grab "C-o" do 
-  File.new("/home/sheela/test")
-end
 
 #
 # == Tags
@@ -577,10 +573,6 @@ end
 tag "browser", "uzbl|opera|firefox|navigator|chromium-browser"
 
 
-tag "irc" do
-  match "weechat-curses"
-  gravity :top
-end
 
 # Placement
 
@@ -716,9 +708,10 @@ end
 
 view "work" do
   match "terms|default|tmux"
-  icon  Subtlext::Icon.new("/home/sheela/.config/subtle/icons/tile.xbm")
+  icon  Subtlext::Icon.new("/home/sheela/.config/subtle/icons/ac8.xbm")
   icon_only true
 end
+
 
 view "web" do
   match "chromium-browser|browser"
@@ -786,7 +779,9 @@ end
  #   background    "#000000"
  #   format_string "%m/%d/%y %H:%M:%S"
  #end
-
+ sublet :wifi do
+  interval 5
+ end
 #
 #  === Link
 #
