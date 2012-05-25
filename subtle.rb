@@ -122,7 +122,7 @@ end
 screen 1 do
   top    [:rssfeeds, :spacer, :keychain, :spacer, :tray, :wifi, :separator, :clock, :battery]
   #top    [ :views, :title, :spacer, :keychain, :spacer, :tray, :sublets ]
-  #bottom [ :views, :title, :spacer ]
+  bottom [ :views, :title, :spacer ]
 end
 
 # Example for a second screen:
@@ -429,14 +429,24 @@ grab "W-z", [ :bottom_left,  :bottom_left66,  :bottom_left33  ]
 #grab "W-x", [ :bottom,       :bottom66,       :bottom33       ]
 grab "W-c", [ :bottom_right, :bottom_right66, :bottom_right33 ]
 
+grab "XF86AudioMute",        :VolumeToggle
+grab "XF86AudioRaiseVolume", :VolumeRaise
+grab "XF86AudioLowerVolume", :VolumeLower
+
+
+grab "C-i", :VolumeRaise
+grab "C-o", :VolumeToggle
+
 # Exec programs
-grab "A-Return", "gnome-terminal"
+grab "A-Return", "xterm"
 
 grab "C-m", "chromium-browser"
 
 grab "C-y", "libreoffice"
 
+grab "C-g", "gnome-terminal"
 
+grab "C-A-l", "xlock"
 
 # Run Ruby lambdas
 grab "S-F2" do |c|
@@ -825,8 +835,13 @@ end
     puts "Reloaded"
   end
 
-  on :start  do
-  puts "Started"
+
+  on :start do
+   Subtlext::Subtle.spawn "gnome-terminal"
+  end
+
+  on :start do
+    Subtlext::Subtle.spawn "chromium-browser"
   end
 #
 # === Link
@@ -841,3 +856,7 @@ style :views do
    foreground "#f6f6f6"
 end
 
+
+grab "W-p" do
+  Subtle::Contrib::Selector.run
+  end
