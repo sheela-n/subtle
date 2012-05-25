@@ -635,6 +635,10 @@ tag "float" do
   float true
 end
 
+tag "mail" do
+  match "thunderbird"
+end
+
 # Gimp
 tag "gimp_image" do
   match   :role => "gimp-image-window"
@@ -749,6 +753,10 @@ view "test" do
   icon_only true
 end
 
+view "mail" do
+  match "mail"
+end
+
 #
 # == Sublets
 #
@@ -792,6 +800,8 @@ end
  sublet :wifi do
   interval 5
  end
+
+
 #
 #  === Link
 #
@@ -842,6 +852,10 @@ end
 
   on :start do
     Subtlext::Subtle.spawn "chromium-browser"
+  end
+
+  on :start do
+    Subtlext::Subtle.spawn "thunderbird"
   end
 #
 # === Link
